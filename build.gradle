@@ -1,13 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-ext {
-    userOrg = 'saniou' //用户名
-    repoName = "support" //仓库名
-    groupId = 'com.sanniou' //groupId
-    desc = 'android support util' //描述
-    website = 'https://github.com/sanniou/support' //地址，填写真实可访问地址
-    licences = ['Apache-2.0'] //描述，填写licences
-    supportVersion='0.0.4'
-}
 buildscript {
     ext.kotlin_version = '1.3.72'
     ext.kotlin_coroutines = '1.3.5'
