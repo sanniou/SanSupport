@@ -3,16 +3,13 @@
  */
 package com.sanniou.support.components
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sanniou.support.extensions.takeIfFalse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 data class UiEvent(var event: Int, var any: Any? = null)
 
@@ -37,7 +34,7 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
-    fun postUIEvent(event: Int, any: Any? = null): Unit =
+    fun sendEvent(event: Int, any: Any? = null): Unit =
         mLockedEvent.contains(event).takeIfFalse {
             mUiEvent.setValue(UiEvent(event, any))
         }.let {
@@ -52,10 +49,21 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
         mLockedEvent.remove(event)
     }
 
+
     /**
      * observe ui event with LifecycleOwner,now we can auto remove observer when view destroy
      */
     fun observeEvent(owner: LifecycleOwner, observer: Observer<UiEvent>) {
+        mUiEvent.observe(owner, observer)
+    }
+
+    fun observeEventInt(owner: LifecycleOwner, observer: Observer<Int>) {
+        mUiEvent.observe(owner, Observer {
+            observer.onChanged(it.event)
+        })
+    }
+
+    fun observeEventIgnoreStatus(owner: LifecycleOwner, observer: Observer<UiEvent>) {
         if (owner.lifecycle.currentState == Lifecycle.State.DESTROYED) {
             return
         }
@@ -73,11 +81,20 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
 
     override fun onCleared() {
         super.onCleared()
-
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        mUiEvent.removeObservers(this)
     }
+
+    fun launch(
+        context: CoroutineContext = EmptyCoroutineContext,
+        start: CoroutineStart = CoroutineStart.DEFAULT,
+        block: suspend CoroutineScope.() -> Unit
+    ) =
+        viewModelScope.launch(context, start, block)
+
+
 }
 
 /**

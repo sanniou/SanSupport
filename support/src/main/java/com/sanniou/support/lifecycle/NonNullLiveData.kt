@@ -1,16 +1,15 @@
 package com.sanniou.support.lifecycle
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 
 /**
  * hide null check when getValue,
  */
 
-open class NonNullLiveData<T>(defaultValue: T) : MutableLiveData<T>(defaultValue) {
+open class NonNullLiveData<T>(defaultValue: T) : MutableLiveData<T>() {
+    init {
+        value = defaultValue;
+    }
 
     override fun setValue(value: T?) {
         if (value == null) {

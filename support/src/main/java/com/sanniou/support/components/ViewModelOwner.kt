@@ -1,9 +1,9 @@
 package com.sanniou.support.components
 
+import androidx.annotation.LayoutRes
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import androidx.databinding.ViewDataBinding
-import androidx.annotation.LayoutRes
 
 /**
  * Basic interface for components that can be a [LifecycleOwner].

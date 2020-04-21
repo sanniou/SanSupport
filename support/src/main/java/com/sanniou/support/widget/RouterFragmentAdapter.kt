@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
+/**
+ * 通过路由创建 fragment ，需要初始化这个变量才可以使用 RouterFragmentAdapter
+ */
 lateinit var defaultFragmentFactory: (route: String) -> Fragment
 
 /**

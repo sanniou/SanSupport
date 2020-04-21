@@ -1,8 +1,8 @@
 package com.sanniou.support.extensions
 
-import java.util.ArrayList
+import java.util.*
 
-fun MutableList<out Any>.removeLast() = this.removeAt(this.lastIndex)
+fun MutableList<out Any>.deleteLast() = this.removeAt(this.lastIndex)
 
 fun <T> Collection<T>.toString(stringCover: (element: T) -> String = { it.toString() }): String {
     if (isEmpty()) {

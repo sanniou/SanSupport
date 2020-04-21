@@ -7,11 +7,10 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.sanniou.support.helper.EditTextHelper
 import com.sanniou.support.widget.FakeBoldSpan
-import com.sanniou.support.utils.ObjectUtils
 
 @BindingAdapter("fakeBoldText")
 fun bindText(view: TextView, text: CharSequence) {
-    if (ObjectUtils.isEmpty(text)) {
+    if (text.isEmpty()) {
         return
     }
     val builder = SpannableStringBuilder(text)

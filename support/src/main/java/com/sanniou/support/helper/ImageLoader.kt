@@ -17,10 +17,12 @@ import com.sanniou.support.R
 object ImageLoader {
 
     const val NO_RES = -1
+
     /**
      * 默认的加载设置
      */
     private var sDefaultOption: Option = getAOption()
+
     /**
      * 缓存的加载设置，用于每次加载时单独的设置
      */
@@ -143,9 +145,9 @@ object ImageLoader {
 
     private fun checkCache(option: Option?, res: Any): Boolean {
         return (option!!.diskCache()
-            && res !is ByteArray
-            && res !is Bitmap
-            && res !is Int)
+                && res !is ByteArray
+                && res !is Bitmap
+                && res !is Int)
     }
 
     private fun checkFragment(fragment: Fragment?): Boolean {
@@ -170,24 +172,29 @@ object ImageLoader {
          * 错误图
          */
         private var mError = 0
+
         /**
          * 占位图
          */
         private var mPlaceholder = 0
+
         /**
          * 内存缓存
          */
         private var mMemoryCache = true
+
         /**
          * 磁盘缓存
          */
         private var mDiskCache = true
+
         /**
          * 圆形
          */
         private var mCircle = false
         private val mHeight = Target.SIZE_ORIGINAL
         private val mWidth = Target.SIZE_ORIGINAL
+
         /**
          * 裁剪
          */

@@ -1,7 +1,5 @@
 package com.sanniou.support.extensions
 
-import kotlin.reflect.KClass
-
 fun Int.isEven() = this and 1 == 0
 
 fun Int.isOdd() = !isEven()
@@ -12,6 +10,23 @@ fun String?.whenEmpty(default: String) =
     } else {
         this
     }
+
+fun String?.orEmpty(vararg strs: String): String =
+    this.let {
+
+        if (this.isNullOrEmpty()) {
+            for (str in strs) {
+                if (str.isNotEmpty()) {
+                    return@let str
+                }
+            }
+            throw RuntimeException("all str is empty")
+
+        } else {
+            this
+        }
+    }
+
 
 inline fun Boolean?.takeIfTrue(block: () -> Unit) {
     if (true == this) block()

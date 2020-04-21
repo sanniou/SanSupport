@@ -26,7 +26,7 @@ abstract class BaseViewModelActivity<T : ViewModel> : AppCompatActivity(), ViewM
             .apply {
                 setVariable(getModelId(), viewModel)
                 lifecycleOwner = provideLifecycleOwner()
-                onBindingCreated(binding)
+                onBindingCreated(this)
             }
     }
 

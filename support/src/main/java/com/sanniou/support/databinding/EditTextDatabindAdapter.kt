@@ -2,7 +2,7 @@ package com.sanniou.support.databinding
 
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
-import com.sanniou.support.utils.KeyboardUtils
+import com.blankj.utilcode.util.KeyboardUtils
 
 @BindingAdapter("selection")
 fun setSelection(editText: EditText, length: Int) {

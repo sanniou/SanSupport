@@ -13,15 +13,15 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
+import com.blankj.utilcode.util.SizeUtils
 import com.sanniou.support.extensions.getColor
-import com.sanniou.support.utils.dp2px
 
 /**
  * ----------------------------------------------------  ----------------------------------------------------
  */
 @BindingAdapter("bindHeightDp")
 fun bindViewHeightDp(view: View, height: Float) {
-    bindViewHeight(view, dp2px(height))
+    bindViewHeight(view, SizeUtils.dp2px(height))
 }
 
 @BindingAdapter("bindHeight")
@@ -38,7 +38,7 @@ fun bindViewHeight(view: View, height: Int) {
 
 @BindingAdapter("bindWidthDp")
 fun bindViewWidthDp(view: View, width: Float) {
-    bindViewWidth(view, dp2px(width))
+    bindViewWidth(view, SizeUtils.dp2px(width))
 }
 
 @BindingAdapter("bindWidth")
@@ -117,7 +117,7 @@ fun setViewpaddingVertical(view: View, padding: Int) {
 @BindingAdapter("paddingHorizontalDp")
 fun setViewpaddingHorizontalDp(view: View, padding: Float) {
     view.setPadding(
-        dp2px(padding), view.paddingTop, dp2px(padding),
+        SizeUtils.dp2px(padding), view.paddingTop, SizeUtils.dp2px(padding),
         view.paddingBottom
     )
 }
@@ -125,8 +125,8 @@ fun setViewpaddingHorizontalDp(view: View, padding: Float) {
 @BindingAdapter("paddingVerticalDp")
 fun setViewpaddingVerticalDp(view: View, padding: Float) {
     view.setPadding(
-        view.paddingStart, dp2px(padding), view.paddingEnd,
-        dp2px(padding)
+        view.paddingStart, SizeUtils.dp2px(padding), view.paddingEnd,
+        SizeUtils.dp2px(padding)
     )
 }
 
@@ -200,7 +200,7 @@ fun setViewBackground(
     view: View,
     @ColorInt colorValue: Int,
     @ColorRes colorRes: Int,
-    colorStr: String,
+    colorStr: String?,
     radiusValue: Int,
     radiusLTValue: Int,
     radiusLBValue: Int,
@@ -219,17 +219,17 @@ fun setViewBackground(
     var radiusRT = radiusRTValue
     var radiusRB = radiusRBValue
     var strokeWidth = strokeWidthValue
-    if (color == 0 && colorRes == 0 && colorStr.isEmpty() && strokeWidth == 0 && strokeWidthDp == 0F
+    if (color == 0 && colorRes == 0 && colorStr.isNullOrEmpty() && strokeWidth == 0 && strokeWidthDp == 0F
     ) {
         return
     }
-    if (colorStr.isNotEmpty()) {
+    if (!colorStr.isNullOrEmpty()) {
         color = Color.parseColor(colorStr)
     } else if (colorRes != 0) {
         color = view.getColor(colorRes)
     }
     if (strokeWidthDp != 0F) {
-        strokeWidth = dp2px(strokeWidthDp)
+        strokeWidth = SizeUtils.dp2px(strokeWidthDp)
     }
     if (isRadiusAdjustBounds) {
         radius = 0
@@ -240,19 +240,19 @@ fun setViewBackground(
     }
     if (!isRadiusPx) {
         if (radius != 0) {
-            radius = dp2px(radius.toFloat())
+            radius = SizeUtils.dp2px(radius.toFloat())
         }
         if (radiusLT != 0) {
-            radiusLT = dp2px(radiusLT.toFloat())
+            radiusLT = SizeUtils.dp2px(radiusLT.toFloat())
         }
         if (radiusLB != 0) {
-            radiusLB = dp2px(radiusLB.toFloat())
+            radiusLB = SizeUtils.dp2px(radiusLB.toFloat())
         }
         if (radiusRT != 0) {
-            radiusRT = dp2px(radiusRT.toFloat())
+            radiusRT = SizeUtils.dp2px(radiusRT.toFloat())
         }
         if (radiusRB != 0) {
-            radiusRB = dp2px(radiusRB.toFloat())
+            radiusRB = SizeUtils.dp2px(radiusRB.toFloat())
         }
     }
     val drawable: GradientDrawable = AdjustGradientDrawable(isRadiusAdjustBounds)
