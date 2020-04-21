@@ -145,9 +145,9 @@ object ImageLoader {
 
     private fun checkCache(option: Option?, res: Any): Boolean {
         return (option!!.diskCache()
-                && res !is ByteArray
-                && res !is Bitmap
-                && res !is Int)
+            && res !is ByteArray
+            && res !is Bitmap
+            && res !is Int)
     }
 
     private fun checkFragment(fragment: Fragment?): Boolean {

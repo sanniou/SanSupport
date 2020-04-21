@@ -17,5 +17,4 @@ abstract class ScopeItem : DataItem, CoroutineScope by MainScope() {
         super.onDetached(holder)
         cancel()
     }
-
 }

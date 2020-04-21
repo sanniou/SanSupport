@@ -22,7 +22,6 @@ inline fun <reified T : Activity> Activity.startActivityEx(
     }, requestCode)
 }
 
-
 internal fun FragmentActivity.replaceFragment(containerViewId: Int, fragment: Fragment) {
     supportFragmentManager.run {
         beginTransaction()

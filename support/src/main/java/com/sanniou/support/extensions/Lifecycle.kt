@@ -13,7 +13,6 @@ inline fun <reified T : ViewModel> ViewModelStoreOwner.getViewModel(
     ViewModelProvider(this).get(T::class.java)
 }
 
-
 /**
  * not do null check
  */

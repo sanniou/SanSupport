@@ -1,13 +1,16 @@
 package com.sanniou.support.moshi
 
-import com.squareup.moshi.*
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.JsonWriter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import java.lang.reflect.Type
 
 /**
  * Converts empty JSON arrays to null for non-collection types. Use for poorly-implemented APIs.
  */
 class EmptyListToNull : JsonAdapter.Factory {
-
 
     override fun create(
         type: Type,

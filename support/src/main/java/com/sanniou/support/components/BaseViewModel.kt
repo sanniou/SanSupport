@@ -3,7 +3,15 @@
  */
 package com.sanniou.support.components
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.sanniou.support.extensions.takeIfFalse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
@@ -49,7 +57,6 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
         mLockedEvent.remove(event)
     }
 
-
     /**
      * observe ui event with LifecycleOwner,now we can auto remove observer when view destroy
      */
@@ -93,8 +100,6 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
         block: suspend CoroutineScope.() -> Unit
     ) =
         viewModelScope.launch(context, start, block)
-
-
 }
 
 /**

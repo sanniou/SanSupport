@@ -1,6 +1,6 @@
 package com.sanniou.support.extensions
 
-import java.util.*
+import java.util.ArrayList
 
 fun MutableList<out Any>.deleteLast() = this.removeAt(this.lastIndex)
 

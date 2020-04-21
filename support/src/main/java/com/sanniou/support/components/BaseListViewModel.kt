@@ -6,7 +6,6 @@ package com.sanniou.support.components
 import com.sanniou.multiitem.DataItem
 import com.sanniou.multiitem.MultiItemArrayList
 
-
 open class BaseListViewModel : BaseViewModel() {
 
     val list = MultiItemArrayList<DataItem>()
@@ -20,5 +19,4 @@ open class BaseListViewModel : BaseViewModel() {
     fun removeAt(position: Int) = list.removeAt(position)
 
     fun clear() = list.clear();
-
 }

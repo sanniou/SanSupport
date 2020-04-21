@@ -27,6 +27,8 @@ import android.widget.TextView;
  * 放手后隐藏HeadView的动画
  * <p>
  * 放手后隐藏HeadView的动画
+ * <p>
+ * 放手后隐藏HeadView的动画
  *//*
 
 public class NormalFooter extends AbsSwipeView {

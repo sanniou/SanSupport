@@ -12,7 +12,6 @@ import androidx.browser.customtabs.CustomTabsIntent
 private const val ACTION_CUSTOM_TABS_CONNECTION =
     "android.support.customtabs.action.CustomTabsService"
 
-
 fun openUrl(context: Context, url: String, @ColorInt color: Int = Color.WHITE): Boolean {
     // Here is a method that returns the chrome package name
     val uri = Uri.parse(url)
@@ -33,9 +32,7 @@ fun openUrl(context: Context, url: String, @ColorInt color: Int = Color.WHITE): 
     customTabsIntent.launchUrl(context, uri)
 
     return true
-
 }
-
 
 fun getNativeApp(
     context: Context,
@@ -54,7 +51,6 @@ fun getNativeApp(
     resolvedSpecializedList.removeAll(resolvedBrowserList)
     return resolvedBrowserList
 }
-
 
 fun getCustomTabsPackages(context: Context, uri: Uri): ArrayList<ResolveInfo> {
     val pm: PackageManager = context.packageManager

@@ -21,12 +21,10 @@ fun String?.orEmpty(vararg strs: String): String =
                 }
             }
             throw RuntimeException("all str is empty")
-
         } else {
             this
         }
     }
-
 
 inline fun Boolean?.takeIfTrue(block: () -> Unit) {
     if (true == this) block()
