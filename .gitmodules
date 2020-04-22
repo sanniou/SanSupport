@@ -1,0 +1,3 @@
+[submodule "MultiItemKit"]
+	path = MultiItemKit
+	url = git@github.com:sanniou/MultiItemKit.git

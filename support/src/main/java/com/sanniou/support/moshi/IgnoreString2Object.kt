@@ -31,7 +31,7 @@ class IgnoreString2Object : JsonAdapter.Factory {
                         Types.nextAnnotations(
                             annotations,
                             IgnoreJsonString2Object::class.java
-                        )
+                        ) as Set<Annotation>
                     )
 
                 return object : JsonAdapter<Any?>() {
