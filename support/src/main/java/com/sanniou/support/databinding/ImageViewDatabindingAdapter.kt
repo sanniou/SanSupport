@@ -1,9 +1,15 @@
 package com.sanniou.support.databinding
 
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.blankj.utilcode.util.ObjectUtils
 import com.sanniou.support.helper.ImageLoader
+
+@BindingAdapter("android:srcCompat")
+fun bindingImage(view: ImageView, resource: Drawable?) {
+    view.setImageDrawable(resource)
+}
 
 @BindingAdapter(value = ["res", "error", "placeholder"], requireAll = false)
 fun bindingImageView(

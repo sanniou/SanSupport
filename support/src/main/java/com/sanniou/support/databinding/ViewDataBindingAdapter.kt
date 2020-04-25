@@ -18,21 +18,16 @@ fun bindingViewStub(view: ViewStub, resource: Int) {
     view.inflate()
 }
 
-@BindingAdapter("android:srcCompat")
-fun bindingImage(view: ImageView, resource: Drawable?) {
-    view.setImageDrawable(resource)
-}
-
 /**
  * ---------------------------------------------------- tablayout ----------------------------------------------------
  */
 @BindingAdapter("viewPager")
-fun bindingTablayout(tabLayout: TabLayout, viewPager: ViewPager) {
+fun bindingTabLayout(tabLayout: TabLayout, viewPager: ViewPager) {
     tabLayout.setupWithViewPager(viewPager)
 }
 
 @BindingAdapter(value = ["viewPager", "title"], requireAll = true)
-fun bindingTablayout(tabLayout: TabLayout, viewPager: ViewPager2, title: List<String>) {
+fun bindingTabLayout(tabLayout: TabLayout, viewPager: ViewPager2, title: List<String>) {
     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
         tab.text = title[position]
         viewPager.setCurrentItem(tab.position, true)
@@ -40,7 +35,7 @@ fun bindingTablayout(tabLayout: TabLayout, viewPager: ViewPager2, title: List<St
 }
 
 @BindingAdapter("selected")
-fun bindingTablayout(tabLayout: TabLayout, selected: Int) {
+fun bindingTabLayout(tabLayout: TabLayout, selected: Int) {
     val tab = tabLayout.getTabAt(selected)
     tab?.select()
 }
@@ -51,7 +46,7 @@ fun captureYabValue(view: TabLayout): Int {
 }
 
 @BindingAdapter("selectedAttrChanged")
-fun bindingTablayout(view: TabLayout, listener: InverseBindingListener) {
+fun bindingTabLayout(view: TabLayout, listener: InverseBindingListener) {
     view.addOnTabSelectedListener(object : OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab) {
             listener.onChange()

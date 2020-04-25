@@ -34,9 +34,10 @@ abstract class BaseViewModelFragment<T : ViewModel> : Fragment(), ViewModelOwner
         binding =
             DataBindingUtil.inflate<ViewDataBinding>(inflater, getLayoutRes(), container, false)
                 .apply {
-                    setVariable(getModelId(), viewModel)
                     lifecycleOwner = provideLifecycleOwner()
-                    onBindingCreated(binding)
+                    setVariable(getModelId(), viewModel)
+                    executePendingBindings()
+                    onBindingCreated(this)
                 }
         return binding.root
     }

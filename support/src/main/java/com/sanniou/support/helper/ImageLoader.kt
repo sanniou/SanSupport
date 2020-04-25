@@ -88,6 +88,17 @@ object ImageLoader {
     fun load(
         view: ImageView,
         res: Any,
+        option: Option = sDefaultOption
+    ) {
+        if (checkViewAttached(view)) {
+            return
+        }
+        load(Glide.with(view).load(res), res, view, option)
+    }
+
+    fun load(
+        view: ImageView,
+        res: Any,
         option: Option = sDefaultOption,
         placeholderId: Int = NO_RES,
         errorId: Int = NO_RES

@@ -24,8 +24,9 @@ abstract class BaseViewModelActivity<T : ViewModel> : AppCompatActivity(), ViewM
         viewModel = createViewModel()
         binding = DataBindingUtil.setContentView<ViewDataBinding>(this, getLayoutRes())
             .apply {
-                setVariable(getModelId(), viewModel)
                 lifecycleOwner = provideLifecycleOwner()
+                setVariable(getModelId(), viewModel)
+                executePendingBindings()
                 onBindingCreated(this)
             }
     }
