@@ -26,11 +26,20 @@ fun bindingTabLayout(tabLayout: TabLayout, viewPager: ViewPager) {
     tabLayout.setupWithViewPager(viewPager)
 }
 
-@BindingAdapter(value = ["viewPager", "title"], requireAll = true)
-fun bindingTabLayout(tabLayout: TabLayout, viewPager: ViewPager2, title: List<String>) {
+@BindingAdapter(value = ["viewPager", "title", "icons"], requireAll = false)
+fun bindingTabLayout(
+    tabLayout: TabLayout,
+    viewPager: ViewPager2,
+    title: List<CharSequence?>?,
+    icons: List<Int?>?
+) {
     TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-        tab.text = title[position]
-        viewPager.setCurrentItem(tab.position, true)
+        title?.run {
+            tab.text = title.getOrNull(position)
+        }
+        icons?.getOrNull(position)?.run {
+            tab.setIcon(this)
+        }
     }.attach()
 }
 

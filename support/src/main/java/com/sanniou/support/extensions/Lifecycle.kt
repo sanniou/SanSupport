@@ -31,10 +31,13 @@ inline fun <reified T : ViewModel> ViewModelStoreOwner.getViewModel(
 }
 
 /**
- * not do null check
+ * without null check
  */
 inline fun <reified T : ViewModel> Fragment.getActivityViewModel() =
     ViewModelProvider(activity!!).get(T::class.java)
+
+fun <T : ViewModel> Fragment.getActivityViewModel(clazz: Class<T>) =
+    ViewModelProvider(activity!!).get(clazz)
 
 fun <X, Y> LiveData<X>.map(mapFunction: (X) -> Y): LiveData<Y> =
     Transformations.map(this, mapFunction)

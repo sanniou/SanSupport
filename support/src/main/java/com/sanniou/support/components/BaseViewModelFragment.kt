@@ -30,14 +30,14 @@ abstract class BaseViewModelFragment<T : ViewModel> : Fragment(), ViewModelOwner
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = createViewModel()
-        binding =
+        viewModel = if (::viewModel.isInitialized) viewModel else createViewModel()
+        binding = if (::binding.isInitialized) binding else
             DataBindingUtil.inflate<ViewDataBinding>(inflater, getLayoutRes(), container, false)
                 .apply {
+                    onBindingCreated(this)
                     lifecycleOwner = provideLifecycleOwner()
                     setVariable(getModelId(), viewModel)
-                    executePendingBindings()
-                    onBindingCreated(this)
+                    // executePendingBindings()
                 }
         return binding.root
     }

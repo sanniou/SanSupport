@@ -53,6 +53,8 @@ fun getNativeApp(
 }
 
 fun getCustomTabsPackages(context: Context, uri: Uri): ArrayList<ResolveInfo> {
+    val packageName = CustomTabsHelper.getPackageNameToUse(context)
+
     val pm: PackageManager = context.packageManager
     // Get default VIEW intent handler.
     val activityIntent = Intent(Intent.ACTION_VIEW, uri)

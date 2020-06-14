@@ -13,7 +13,7 @@ open class BaseListViewModel : BaseViewModel() {
 
     fun add(item: DataItem) = list.add(item)
 
-    fun set(index: Int,item: DataItem) = list.set(index,item)
+    fun set(index: Int, item: DataItem) = list.set(index, item)
 
     fun add(position: Int, dataItem: DataItem) = list.add(position, dataItem)
 
@@ -26,4 +26,6 @@ open class BaseListViewModel : BaseViewModel() {
     fun removeLast() = list.deleteLast()
 
     fun clear() = list.clear()
+
+    protected fun List<DataItem>.addTo() = list.addAll(this)
 }

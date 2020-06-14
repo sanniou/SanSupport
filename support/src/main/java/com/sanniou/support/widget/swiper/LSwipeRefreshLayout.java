@@ -30,6 +30,7 @@ import static androidx.core.view.ViewCompat.TYPE_TOUCH;
 
 /**
  * @author sanniou
+ *
  * <p>
  * 下拉刷新控件 可在layout之前使用{@link #setHeader}添加自定义头部， 若未设置，添加默认头部{@link
  * #createHeader}
@@ -809,10 +810,10 @@ public class LSwipeRefreshLayout extends ViewGroup
             return;
         }
         if (dy < 0 && !canChildScrollUp()) {
-            // 下滑且 child不能被下拉
+            // 下滑且 child不能往上滚动
             moveHead(mTotalUnconsumed, -dy);
         } else if (dy > 0 && !canChildScrollDown()) {
-            // 上滑且child不能被上拉
+            // 上滑且child不能往下滚动
             moveFoot(mTotalUnconsumed, -dy);
         }
     }

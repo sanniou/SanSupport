@@ -19,6 +19,11 @@ fun setLoadStatus(v: LSwipeRefreshLayout, state: Boolean) {
     v.stopLoadMore(state)
 }
 
+@BindingAdapter("startRefresh")
+fun setLoadStatus(v: LSwipeRefreshLayout, state: Any) {
+    v.startRefresh()
+}
+
 @BindingAdapter("state")
 fun setRefreshLayoutStatus(v: LSwipeRefreshLayout, state: Int) {
     when (state) {
