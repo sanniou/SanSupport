@@ -15,12 +15,8 @@
  */
 package com.sanniou.support.lifecycle
 
-import android.util.Log
-import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * A lifecycle-aware observable that sends only new updates after subscription, used for events like
@@ -44,5 +40,5 @@ class LatestLiveEvent<T> : SingleLiveEvent<T>() {
     }
 
     override fun verify(observer: Observer<in T>) =
-        theLatest == observer && mPending.compareAndSet(true, false)
+        theLatest == observer && super.verify(observer)
 }

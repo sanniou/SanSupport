@@ -1,5 +1,6 @@
 package com.sanniou.support.lifecycle
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -10,9 +11,20 @@ import androidx.lifecycle.Observer
  * hide null check when getValue,
  */
 
-open class NonNullLiveData<T>(defaultValue: T) : MutableLiveData<T>() {
+open class NonNullLiveData<T>(defaultValue: T?) : MutableLiveData<T>() {
     init {
-        value = defaultValue;
+        if (defaultValue != null) {
+            value = defaultValue
+        }
+    }
+
+    @MainThread
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
+        super.observe(owner, Observer { t ->
+            if (t != null) {
+                observer.onChanged(t)
+            }
+        })
     }
 
     override fun setValue(value: T?) {
