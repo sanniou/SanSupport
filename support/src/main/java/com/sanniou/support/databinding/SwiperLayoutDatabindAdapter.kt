@@ -20,8 +20,10 @@ fun setLoadStatus(v: LSwipeRefreshLayout, state: Boolean) {
 }
 
 @BindingAdapter("startRefresh")
-fun setLoadStatus(v: LSwipeRefreshLayout, state: Any) {
-    v.startRefresh()
+fun startRefresh(v: LSwipeRefreshLayout, state: Any?) {
+    state?.run {
+        v.startRefresh()
+    }
 }
 
 @BindingAdapter("state")

@@ -5,6 +5,7 @@ import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.sanniou.support.extensions.getColor
 import com.sanniou.support.helper.EditTextHelper
 import com.sanniou.support.widget.FakeBoldSpan
 
@@ -21,6 +22,11 @@ fun bindText(view: TextView, text: CharSequence) {
 @BindingAdapter("imeOptions")
 fun bindEditImeOption(view: TextView, imeOptions: Int) {
     view.imeOptions = imeOptions
+}
+
+@BindingAdapter("textColorRes")
+fun setTextColorRes(view: TextView, color: Int) {
+    view.setTextColor(view.getColor(color))
 }
 
 @BindingAdapter("android:inputType")

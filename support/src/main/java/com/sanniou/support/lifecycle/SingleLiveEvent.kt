@@ -53,10 +53,6 @@ open class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     protected open fun verify(observer: Observer<in T>) = mPending.compareAndSet(true, false)
 
-    override fun getValue(): T {
-        return super.getValue()!!
-    }
-
     override fun postValue(t: T?) {
         if (t == null) {
             return
