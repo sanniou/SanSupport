@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
  * hide null check when getValue,
  */
 
-open class NonNullLiveData<T>(defaultValue: T?) : MutableLiveData<T>() {
+open class NonNullLiveData<T>(defaultValue: T? = null) : MutableLiveData<T>() {
     init {
         if (defaultValue != null) {
             value = defaultValue

@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  * Note that only one observer is going to be notified of changes.
  */
-open class SingleLiveEvent<T> : MutableLiveData<T>() {
+open class SingleLiveData<T> : MutableLiveData<T>() {
     protected val mPending = AtomicBoolean(false)
 
     @MainThread
@@ -54,18 +54,12 @@ open class SingleLiveEvent<T> : MutableLiveData<T>() {
     protected open fun verify(observer: Observer<in T>) = mPending.compareAndSet(true, false)
 
     override fun postValue(t: T?) {
-        if (t == null) {
-            return
-        }
         mPending.set(true)
         super.postValue(t)
     }
 
     @MainThread
     override fun setValue(t: T?) {
-        if (t == null) {
-            return
-        }
         mPending.set(true)
         super.setValue(t)
     }

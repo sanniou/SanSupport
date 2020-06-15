@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sanniou.support.extensions.takeIfFalse
-import com.sanniou.support.lifecycle.SingleLiveEvent
+import com.sanniou.support.lifecycle.SingleLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.launch
@@ -32,7 +32,7 @@ open class BaseViewModel : ViewModel(), LifecycleOwner {
         return lifecycleRegistry
     }
 
-    private val mUiEvent = SingleLiveEvent<UiEvent>()
+    private val mUiEvent = SingleLiveData<UiEvent>()
 
     private val mLockedEvent = hashSetOf<Int>()
 

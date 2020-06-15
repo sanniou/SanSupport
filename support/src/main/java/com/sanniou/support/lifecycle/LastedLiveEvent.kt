@@ -30,7 +30,7 @@ import androidx.lifecycle.Observer
  *
  * Note that only one observer is going to be notified of changes.
  */
-class LatestLiveEvent<T> : SingleLiveEvent<T>() {
+class LatestLiveData<T> : SingleLiveData<T>() {
 
     private var theLatest: Observer<in T>? = null
 
