@@ -1,6 +1,3 @@
-/**
- * Copyright (c) 2020 Mercedes-Benz. All rights reserved.
- */
 package com.sanniou.support.components
 
 import com.sanniou.multiitem.DataItem
