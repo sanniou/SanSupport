@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.sanniou.support.R
 
@@ -143,6 +145,10 @@ object ImageLoader {
         if (option.circle()) {
             builder.circleCrop()
         }
+        if (option.radius() > 0 && !option.circle()) {
+            builder.apply(RequestOptions.bitmapTransform(RoundedCorners(option.radius())))
+        }
+
         builder.skipMemoryCache(!option.memoryCache())
             .diskCacheStrategy(
                 if (checkCache(
@@ -199,6 +205,8 @@ object ImageLoader {
          */
         private var mDiskCache = true
 
+        private var mRadius = 0
+
         /**
          * 圆形
          */
@@ -227,6 +235,15 @@ object ImageLoader {
 
         fun memoryCache(): Boolean {
             return mMemoryCache
+        }
+
+        fun radius(radius: Int): Option {
+            mRadius = radius
+            return this
+        }
+
+        fun radius(): Int {
+            return mRadius
         }
 
         fun diskCache(diskCache: Boolean): Option {

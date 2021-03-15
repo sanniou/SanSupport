@@ -11,28 +11,8 @@ fun bindingImage(view: ImageView, resource: Drawable?) {
     view.setImageDrawable(resource)
 }
 
-@BindingAdapter(value = ["res", "error", "placeholder"], requireAll = false)
-fun bindingImageView(
-    view: ImageView,
-    img: Any,
-    error: Int,
-    placeholder: Int
-) {
-    bindingImage(
-        view,
-        img,
-        error,
-        placeholder,
-        center = false,
-        circle = false,
-        original = false,
-        noDiskCache = false,
-        noMemoryCache = false
-    )
-}
-
 @BindingAdapter(
-    value = ["res", "error", "placeholder", "center", "circle", "original", "noDiskCache", "noMemoryCache"],
+    value = ["res", "error", "placeholder", "center", "circle", "original", "noDiskCache", "noMemoryCache", "radius"],
     requireAll = false
 )
 fun bindingImage(
@@ -44,7 +24,8 @@ fun bindingImage(
     circle: Boolean,
     original: Boolean,
     noDiskCache: Boolean,
-    noMemoryCache: Boolean
+    noMemoryCache: Boolean,
+    radius: Int,
 ) {
     if (ObjectUtils.isEmpty(res)) {
         ImageLoader.clear(view)
@@ -63,5 +44,6 @@ fun bindingImage(
     option.centerCrop(center)
     option.circle(circle)
     option.original(original)
+    option.radius(radius)
     ImageLoader.load(view, res, option)
 }
